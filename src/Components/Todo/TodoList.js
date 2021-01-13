@@ -20,7 +20,7 @@ class Todolist extends React.Component {
           {todos
             ? todos.map((value, index) => {
                 return (
-                  <li key={index}>
+                  <li key={index} className="TaskRow">
                     <label
                       style={
                         value.marked
@@ -38,6 +38,7 @@ class Todolist extends React.Component {
                       />
                       {value.todo}
                     </label>
+                    <button className="hidden">Delete</button>
                   </li>
                 );
               })

@@ -7,15 +7,18 @@ class Todo extends React.Component {
   state = {
     todo: "",
     todos: [
-      { todo: "first todo", marked: false },
-      { todo: "2nd todo", marked: true },
+      { todo: "first todo", marked: false, delete: false },
+      { todo: "2nd todo", marked: true, delete: false },
     ],
     title: "My tasks",
+    filterBy: "",
   };
 
   handleOnChange = (event) => {
     this.setState({ todo: event.target.value });
   };
+
+  filterData = () => {};
 
   addTask = () => {
     const { todo, todos } = this.state;
@@ -29,10 +32,10 @@ class Todo extends React.Component {
   };
 
   markTaskAsCompleted = (event, index) => {
-    console.log(event.target.checked);
     const { todos } = this.state;
 
     const newTodos = [...todos];
+
     newTodos[index] = {
       ...newTodos[index],
       marked: event.target.checked,
@@ -51,9 +54,13 @@ class Todo extends React.Component {
           onChange={this.handleOnChange}
         />
         <button onClick={this.addTask}>Add Task</button>
+        <button>Show all</button>
+        <button>Completed</button>
+        <button>Pending</button>
         <Todolist
           title={this.state.title}
           todos={this.state.todos}
+          filterBy={this.state.filterBy}
           markTaskAsCompleted={this.markTaskAsCompleted}
         />
       </div>
